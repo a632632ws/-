@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+    var  futureTime = new Date("2019-5-18 9:27:00");  //到达的时间
+    var body = document.body;
+    var timer;   //计时器
+
+
+
+
+
+    timer = setInterval(function(){
+        var  nowTime = new Date();     //当前时间
+        var cha = futureTime - nowTime;  //时间戳
+        if (cha < 0) {
+            clearInterval(timer);
+            alert ("时间到了");
+            return false;
+        }
+        var hoursTime  = 1000 * 60 * 60;
+        var minutesTime = 1000 * 60;
+
+        var hours = Math.floor(cha/ hoursTime) ;
+        var minutes = Math.floor(cha % hoursTime / minutesTime);
+        var seconds = Math.floor(cha % minutesTime / 1000);
+
+        //把值 传到 外部 的 body 中 防止内部循环打印;
+        body.innerHTML="还剩下:"+hours+"时"+minutes+"分"+seconds+"秒";
+    },1000)
+
+
+
+
+</script>
+</body>
+</html>
